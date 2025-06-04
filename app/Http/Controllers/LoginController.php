@@ -32,6 +32,10 @@ class LoginController extends Controller
     // login
     public function login()
     {
+        // login 상태라면
+        if (Auth::check()) {
+            return redirect()->intended('amdin/dashboard');
+        }
         return view('auth.login');
     }
 }
