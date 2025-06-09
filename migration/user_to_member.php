@@ -17,6 +17,7 @@ $sql = "select top 10 CD_COMPANY
 , NO_USER
 , ID_USER
 , NM_USER
+, NM_NICK
 , TXT_EMAIL
 , CD_USER_SEX
 , DT_BIRTHDAY
@@ -49,13 +50,14 @@ while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
 print_r($users); // Debugging: dump the users $arrayName = array();
 foreach ($users as $user) {    
     // Insert into the database
-    $insertSql = "INSERT INTO customers (membership_code, user_no, user_id, user_name, user_email, gender, birth, created_at, updated_at, total_cash, total_bonus, remain_cash, remain_bonus) 
-                  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+    $insertSql = "INSERT INTO customers (membership_code, user_no, user_id, user_name, user_nick, user_email, gender, birth, created_at, updated_at, total_cash, total_bonus, remain_cash, remain_bonus) 
+                  VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $params = [
         $user->CD_COMPANY,
         $user->NO_USER,
         $user->ID_USER,
         $user->NM_USER,
+        $user->NM_NICK,
         $user->TXT_EMAIL,
         $user->CD_USER_SEX,
         $user->DT_BIRTHDAY,
