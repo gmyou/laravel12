@@ -19,7 +19,7 @@
     </tr>
   </thead>
   <tbody>
-@foreach($customers as $customer)
+    @foreach($customers as $customer)
     <tr>
       <th scope="row">{{ $customer->id }}</th>
       <td>{{ $customer->membership_code }}</td>
@@ -34,6 +34,11 @@
     @endforeach
 </tbody>
 </table>
+
+<!-- pagination -->
+<div class="d-flex justify-content-center">
+    {{ $customers->links() }}
+</div>
 
 </body>
 </html>

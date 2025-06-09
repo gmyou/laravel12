@@ -10,7 +10,7 @@ class CustomerController extends Controller
     //
     public function index()
     {
-        $customers = Customer::all();
+        $customers = Customer::simplePaginate(5); // Fetch customers with pagination
         return view('admin.customer.index', compact('customers'));
     }
     public function show($id)
