@@ -4,6 +4,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\IpgServerController;
+use App\Http\Controllers\ApiController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -29,4 +30,10 @@ Route::prefix('admin')->group(function () {
     Route::post('/ipgserver', [IpgServerController::class, 'create'])->name('admin.ipgserver.create');
     Route::put('/ipgserver/{id}', [IpgServerController::class, 'update'])->name('admin.ipgserver.update');
     Route::delete('/ipgserver/{id}', [IpgServerController::class, 'delete'])->name('admin.ipgserver.delete');
+});
+
+// API routes
+Route::prefix('api')->group(function () {
+    Route::get('/cash', [ApiController::class, 'get_cash'])->name('api.get_cash');
+    // Add more API routes as needed
 });
