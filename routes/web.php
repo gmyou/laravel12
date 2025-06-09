@@ -14,9 +14,11 @@ Route::get('/admin', [LoginController::class, 'login'])->name('login.form');
 Route::get('/amdin/dashboard', [AdminController::class, 'index'])->name('admin.index');
 
 // Customer routes
-// todo include authentication middleware for admin routes
-Route::get('/customer', [CustomerController::class, 'index'])->name('admin.customer');
-Route::get('/customer/{id}', [CustomerController::class, 'show'])->name('admin.customer.show');
-Route::post('/customer', [CustomerController::class, 'create'])->name('admin.customer.create');
-Route::put('/customer/{id}', [CustomerController::class, 'update'])->name('admin.customer.update');
-Route::delete('/customer/{id}', [CustomerController::class, 'delete'])->name('admin.customer.delete');
+// todo middleware for authentication
+Route::prefix('admin')->group(function () {
+    Route::get('/customer', [CustomerController::class, 'index'])->name('admin.customer');
+    Route::get('/customer/{id}', [CustomerController::class, 'show'])->name('admin.customer.show');
+    Route::post('/customer', [CustomerController::class, 'create'])->name('admin.customer.create');
+    Route::put('/customer/{id}', [CustomerController::class, 'update'])->name('admin.customer.update');
+    Route::delete('/customer/{id}', [CustomerController::class, 'delete'])->name('admin.customer.delete');
+});

@@ -1,1 +1,1 @@
-admin.customers.index
+<code>admin.customer</code> => {{ route('admin.customer') }}
