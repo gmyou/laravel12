@@ -50,7 +50,7 @@ while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
 print_r($users); // Debugging: dump the users $arrayName = array();
 foreach ($users as $user) {    
     // Insert into the database
-    $insertSql = "INSERT INTO customers (membership_code, user_no, user_id, user_name, user_nick, user_email, gender, birth, created_at, updated_at, total_cash, total_bonus, remain_cash, remain_bonus) 
+    $insertSql = "INSERT INTO customers (membership_code, user_no, user_id, user_name, user_nick, user_email, gender, birth, created_at, updated_at, remain_cash, remain_bonus, total_cash, total_bonus) 
                   VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $params = [
         $user->CD_COMPANY,
