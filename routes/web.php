@@ -3,6 +3,7 @@
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\IpgServerController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -21,4 +22,11 @@ Route::prefix('admin')->group(function () {
     Route::post('/customer', [CustomerController::class, 'create'])->name('admin.customer.create');
     Route::put('/customer/{id}', [CustomerController::class, 'update'])->name('admin.customer.update');
     Route::delete('/customer/{id}', [CustomerController::class, 'delete'])->name('admin.customer.delete');
+
+    // IPG Server routes
+    Route::get('/ipgserver', [IpgServerController::class, 'index'])->name('admin.ipgserver');
+    Route::get('/ipgserver/{id}', [IpgServerController::class, 'show'])->name('admin.ipgserver.show');
+    Route::post('/ipgserver', [IpgServerController::class, 'create'])->name('admin.ipgserver.create');
+    Route::put('/ipgserver/{id}', [IpgServerController::class, 'update'])->name('admin.ipgserver.update');
+    Route::delete('/ipgserver/{id}', [IpgServerController::class, 'delete'])->name('admin.ipgserver.delete');
 });
