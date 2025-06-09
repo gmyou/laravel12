@@ -1,1 +1,1 @@
-admin.dashboard
+{{ auth()->user()->name }}'s Dashboard
