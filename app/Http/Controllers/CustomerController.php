@@ -8,9 +8,12 @@ use Illuminate\Http\Request;
 class CustomerController extends Controller
 {
     //
-    public function index()
+    public function index(Request $request)
     {
-        $customers = Customer::simplePaginate(5); // Fetch customers with pagination
+        $page = $request->input('page', 1); // Get the current page from the request, default to 1
+        $perPage = 5; // Number of customers per page
+
+        $customers = Customer::simplePaginate($perPage); // Fetch customers with pagination
         return view('admin.customer.index', compact('customers'));
     }
     public function show($id)
