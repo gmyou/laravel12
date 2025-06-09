@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
@@ -9,8 +10,8 @@ class CustomerController extends Controller
     //
     public function index()
     {
-        // Logic to retrieve and return a list of customer
-        return view('admin.customer.index');
+        $customers = Customer::all();
+        return view('admin.customer.index', compact('customers'));
     }
     public function show($id)
     {
