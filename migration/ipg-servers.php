@@ -15,7 +15,7 @@ $connectionOptions = array(
 
 $sql = "select top 10 
 TXT_ALIAS
-, CD_SVR_KIND
+, CD_SVR_KIND -- 'I' => 'INTERNAL', 'E' => 'EXTERNAL'
 , IP_SVR
 , CD_STATUS -- D: del_flag=>'Y', status_flag ('T' =>'N', 'A' =>'Y')
 , CD_TX_TYPE -- 10 => INCOME, 20 => OUTGOINGS, 30 => ALL
@@ -47,6 +47,7 @@ foreach ($servers as $server) {
     $insertSql = "INSERT INTO ipg_servers (server_name, server_position, ip_address, del_flag, status_flag, transaction_type, created_at, updated_at) 
                   VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
+    $server->position = $server->CD_SVR_KIND === 'I' ? 'INTERNAL' : ($server->CD_SVR_KIND === 'E' ? 'EXTERNAL' : 'UNKNOWN');
     $server->del_flag = 'N';
     $server->status_flag = 'N'; 
     if ($server->CD_STATUS === 'D') {
@@ -59,7 +60,7 @@ foreach ($servers as $server) {
 
     $params = [
         $server->TXT_ALIAS,
-        $server->CD_SVR_KIND,
+        $server->position,
         $server->IP_SVR,
         $server->del_flag,
         $server->status_flag,
