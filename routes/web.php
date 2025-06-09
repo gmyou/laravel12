@@ -13,7 +13,8 @@ Route::get('/', function () {
 
 // Route for the login form
 Route::get('/admin', [LoginController::class, 'login'])->name('login.form');
-Route::get('/amdin/dashboard', [AdminController::class, 'index'])->name('admin.index');
+Route::post('/admin', [LoginController::class, 'authenticate'])->name('login.store');
+Route::get('/admin/dashboard', [AdminController::class, 'index'])->name('admin.index');
 
 // Customer routes
 // todo middleware for authentication
