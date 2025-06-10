@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\IpgServerController;
@@ -17,6 +18,10 @@ Route::get('/', function () {
 Route::get('/admin', [LoginController::class, 'login'])->name('login');
 Route::post('/admin', [LoginController::class, 'authenticate'])->name('login.store');
 Route::post('/admin/logout', [LoginController::class, 'logout'])->name('logout.store');
+
+// Route for the registration form
+Route::get('/admin/register', [RegisterController::class, 'showRegistrationForm'])->name('register.form');
+Route::post('/admin/register', [RegisterController::class, 'store'])->name('register.store');
 
 Route::middleware('auth')->group(function(){
     Route::prefix('admin')->group(function () {
